@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scoring Tracking Association using MLPs</title>
+</head>
+
+<body>
+  <h1>Scoring Tracking Association using MLPs</h1>
+
+  <h2>Overview</h2>
+  <p>
+    This page contains information for a capstone project, done as part of the
+    requirements for the Computer Science MS program at RIT.
+  </p>
+
+  <p>
+    The goal of this project is to explore multi-object radar tracking by using
+    a Multilayer Perceptron, or MLP, to score track-to-detection associations.
+    The learned association score will eventually be compared against classical
+    distance-based association methods.
+  </p>
+
+  <h2>General Background</h2>
+
+  <h3>Multi-Object Tracking</h3>
+  <p>
+    Multi-object tracking systems estimate the motion of multiple targets over time.
+    A common tracking pipeline follows a predict, associate, and update cycle.
+    In this process, new detections are matched with existing tracks in order to
+    maintain target identity across frames.
+  </p>
+
+  <h3>FMCW Radar</h3>
+  <p>
+    This project focuses on simulated FMCW radar data. FMCW radar is useful for
+    short to medium range tracking because it can provide radar-related measurements
+    such as range, radial velocity, and return power.
+  </p>
+
+  <h3>MLP-Based Association</h3>
+  <p>
+    The proposed approach is to use an MLP to score track-detection pairs. Instead
+    of relying only on traditional distance-based metrics, the model can learn from
+    features such as position, range, velocity, and power.
+  </p>
+
+  <h2>Currently Working On</h2>
+  <p>
+    The project is currently focused on Milestone 1. This includes reviewing tracking
+    theory and developing the data generation process.
+  </p>
+
+  <ul>
+    <li>Reviewing tracking theory</li>
+    <li>Generating simulated radar-style detections</li>
+    <li>Adding measurement noise, false positives, and missed detections</li>
+    <li>Creating visualizations to validate generated data</li>
+  </ul>
+
+  <h3>Milestone 0 - 5/28</h3>
+  <ul>
+    <li>Problem Overview</li>
+    <li>
+    <a href="presentations/capstone_overview.pdf">Milestone 0 Presentation</a>
+    </li>
+  </ul>
+
+  <h3>Milestone 1 - 6/16</h3>
+  <ul>
+    <li>Tracking theory review</li>
+    <li>Data generation</li>
+  </ul>
+
+  <h3>Milestone 2 - 6/25</h3>
+  <ul>
+    <li>Classical distance-based tracking implemented</li>
+    <li>Structure for MLP association-based tracking implemented</li>
+  </ul>
+
+  <h3>Milestone 3 - 7/16</h3>
+  <ul>
+    <li>Training MLP association models</li>
+    <li>Evaluating MLP association models against distance-based tracking</li>
+  </ul>
+
+  <h3>Project Poster - 7/28</h3>
+  <ul>
+    <li>Prepare final project poster</li>
+    <li>Summarize project goal, method, results, and conclusions</li>
+  </ul>
+
+  <h2>Reports</h2>
+
+  <h3>Final Project Report</h3>
+  <p>
+    The final report will summarize the completed data generation, tracking framework,
+    MLP association model, evaluation results, and future work.
+  </p>
+<ul>
+    <li>
+        <a href="reports/Final_Paper__RD_v1.pdf">Draft 1</a> - uploaded 6/8
+    </li>
+</ul>
+
+  <h3>Project Poster</h3>
+  <p>
+    The project poster will summarize the project goal, method, results, and conclusions.
+  </p>
+
+  <h2>Helpful Resources</h2>
+
+  <h3>RadarSimPy</h3>
+  <p>
+  <a href="https://radarsimx.github.io/radarsimpy/" target="_blank">
+    RadarSimPy Documentation
+  </a>
+  </p>
+  <p>
+    RadarSimPy is used to support the simulated FMCW radar data generation stage.
+  </p>
+
+</body>
+</html>
