@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -13,50 +13,60 @@
     This page contains information for a capstone project, done as part of the
     requirements for the Computer Science MS program at RIT.
   </p>
-
   <p>
-    The goal of this project is to explore multi-object radar tracking by using
-    a Multilayer Perceptron, or MLP, to score track-to-detection associations.
-    The learned association score will eventually be compared against classical
-    distance-based association methods.
-  </p>
+  The goal of this project is to develop and evaluate an intelligent radar
+  tracking system for converting noisy detection reports into continuous target
+  tracks. The system uses Kalman filters for motion prediction and a learned
+  MLP association model to combine spatial, uncertainty-based, reflectivity-based,
+  radial-velocity-based, and track-maturity features when matching detections to
+  existing tracks.
+</p>
 
-  <h2>General Background</h2>
+<h2>General Background</h2>
 
-  <h3>Multi-Object Tracking</h3>
-  <p>
-    Multi-object tracking systems estimate the motion of multiple targets over time.
-    A common tracking pipeline follows a predict, associate, and update cycle.
-    In this process, new detections are matched with existing tracks in order to
-    maintain target identity across frames.
-  </p>
+<h3>Multi-Object Tracking</h3>
+<p>
+  Multi-object tracking estimates the state and identity of multiple targets over
+  time. A common tracking pipeline follows a predict, associate, and update cycle:
+  existing tracks are predicted forward, new detections are associated with those
+  tracks, and matched tracks are updated using the assigned detections.
+</p>
 
-  <h3>FMCW Radar</h3>
-  <p>
-    This project focuses on simulated FMCW radar data. FMCW radar is useful for
-    short to medium range tracking because it can provide radar-related measurements
-    such as range, radial velocity, and return power.
-  </p>
+<h3>Monostatic Radar</h3>
+<p>
+  In a monostatic radar system, the transmitter and receiver are located at the
+  same site. After radar processing, a possible target can be represented as a
+  detection report. A detection report may include measurements such as estimated
+  position, radial velocity, and received signal strength or radar cross section.
+</p>
 
-  <h3>MLP-Based Association</h3>
-  <p>
-    The proposed approach is to use an MLP to score track-detection pairs. Instead
-    of relying only on traditional distance-based metrics, the model can learn from
-    features such as position, range, velocity, and power.
-  </p>
+<h3>Tracking Strategies</h3>
+<p>
+  Tracking systems can generally be separated into two broad association
+  strategies: hard assignment methods and probabilistic assignment methods. Hard
+  assignment methods choose a single best detection for each track, while
+  probabilistic methods consider multiple possible detections and weight them by
+  likelihood.
+</p>
 
-  <h2>Currently Working On</h2>
-  <p>
-    The project is currently focused on Milestone 1. This includes reviewing tracking
-    theory and developing the data generation process.
-  </p>
+<p>
+  Global nearest neighbor, or GNN, is a hard assignment approach that selects a
+  one-to-one matching between existing tracks and new detections. Joint
+  probabilistic data association, or JPDA, is a probabilistic approach that
+  updates tracks using association probabilities across multiple feasible
+  detections.
+</p>
 
-  <ul>
-    <li>Reviewing tracking theory</li>
-    <li>Generating simulated radar-style detections</li>
-    <li>Adding measurement noise, false positives, and missed detections</li>
-    <li>Creating visualizations to validate generated data</li>
-  </ul>
+<h3>Learned Association Model</h3>
+<p>
+  The learned model in this project follows a GNN-based tracking structure because
+  the final association step still produces a one-to-one assignment. The MLP is
+  used to score candidate track-detection pairs before the final assignment is
+  selected, allowing the tracker to combine multiple association cues while keeping
+  the structure of a hard-assignment tracker.
+</p>
+
+<h2>Milestones</h2>
 
   <h3>Milestone 0 - 5/28</h3>
   <ul>
@@ -67,58 +77,104 @@
   </ul>
 
   <h3>Milestone 1 - 6/16</h3>
-  <ul>
-    <li>Tracking theory review</li>
-    <li>Data generation</li>
-  </ul>
+<ul>
+  <li>Reviewed Kalman filtering, data association, GNN, and JPDA tracking methods</li>
+  <li>Reviewed radar detection reports, clutter, measurement noise, and RCS</li>
+  <li>Built synthetic target motion and scenario generation</li>
+  <li>Generated radar-style detection reports using RadarSimPy</li>
+  <li>
+    <a href="presentations/milestone_1.pdf">Milestone 1 Presentation</a>
+    </li>
+</ul>
 
   <h3>Milestone 2 - 6/25</h3>
-  <ul>
-    <li>Classical distance-based tracking implemented</li>
-    <li>Structure for MLP association-based tracking implemented</li>
-  </ul>
+<ul>
+  <li>Implemented Kalman-filter-based track prediction and update</li>
+  <li>Added Euclidean and Mahalanobis distance association</li>
+  <li>Built track management for tentative, confirmed, and background tracks</li>
+  <li>Created the initial learned association framework</li>
+  <li>
+    <a href="presentations/milestone_2.pdf">Milestone 2 Presentation</a>
+    </li>
+</ul>
 
   <h3>Milestone 3 - 7/16</h3>
-  <ul>
-    <li>Training MLP association models</li>
-    <li>Evaluating MLP association models against distance-based tracking</li>
-  </ul>
-
-  <h3>Project Poster - 7/28</h3>
-  <ul>
-    <li>Prepare final project poster</li>
-    <li>Summarize project goal, method, results, and conclusions</li>
-  </ul>
+<ul>
+  <li>Trained PyTorch MLP models for track-detection association</li>
+  <li>Added RCS likelihood and radial consistency association features</li>
+  <li>Compared learned association against Euclidean and Mahalanobis tracking</li>
+  <li>Evaluated GNN and JPDA baselines using Stone Soup</li>
+  <li>Tested tracking performance on similar and non-similar generated data</li>
+  <li>
+    <a href="presentations/milestone_3.pdf">Milestone 3 Presentation</a>
+    </li>
+</ul>
 
   <h2>Reports</h2>
 
   <h3>Final Project Report</h3>
   <p>
-    The final report will summarize the completed data generation, tracking framework,
-    MLP association model, evaluation results, and future work.
+    TODO
   </p>
-<ul>
-    <li>
-        <a href="reports/Final_Paper__RD_v1.pdf">Draft 1</a> - uploaded 6/8
-    </li>
-</ul>
+
 
   <h3>Project Poster</h3>
   <p>
-    The project poster will summarize the project goal, method, results, and conclusions.
+    TODO
   </p>
 
   <h2>Helpful Resources</h2>
 
   <h3>RadarSimPy</h3>
-  <p>
+<p>
   <a href="https://radarsimx.github.io/radarsimpy/" target="_blank">
     RadarSimPy Documentation
   </a>
-  </p>
-  <p>
-    RadarSimPy is used to support the simulated FMCW radar data generation stage.
-  </p>
+</p>
+<p>
+  RadarSimPy is an open-source radar simulation library for modeling radar
+  systems and target returns. In this project, it was used to simulate the radar
+  power return used in the generated detection reports.
+</p>
+<h3>Stone Soup</h3>
+<p>
+  <a href="https://stonesoup.readthedocs.io/" target="_blank">
+    Stone Soup Documentation
+  </a>
+</p>
+<p>
+  Stone Soup is an open-source Python framework for tracking and state estimation.
+  In this project, it was used to implement out-of-the-box GNN and JPDA tracking
+  baselines, allowing the learned tracker to be compared against established
+  tracking methods.
+</p>
+
+<h3>PyTorch</h3>
+<p>
+  <a href="https://pytorch.org/" target="_blank">
+    PyTorch Documentation
+  </a>
+</p>
+<p>
+  PyTorch is an open-source machine learning framework used for building and
+  training neural networks. In this project, it was used to train the MLP model
+  that scores candidate track-detection associations.
+</p>
+
+<h3>FilterPy</h3>
+<p>
+  <a href="https://filterpy.readthedocs.io/" target="_blank">
+    FilterPy Documentation
+  </a>
+</p>
+<p>
+  FilterPy is a Python library for Kalman filtering and Bayesian filtering. In
+  this project, it was used to support the Kalman filter prediction and update
+  steps used inside the custom tracking framework.
+</p>
 
 </body>
 </html>
+
+
+
